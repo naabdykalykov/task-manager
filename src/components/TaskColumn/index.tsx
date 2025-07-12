@@ -11,8 +11,12 @@ type TaskColumnProps = {
 export const TaskColumn = ({ title, status, tasks }: TaskColumnProps) => {
   return (
     <div className={styles.column}>
-      <h3>{title}</h3>
-      {tasks.length === 0 && <p>No tasks here</p>}
+      <div className={styles.header}>
+        <h3>{title}</h3>
+        <span className={styles.count}>{tasks.length}</span>
+      </div>
+
+      {tasks.length === 0 && <p className={styles.empty}>Нет задач</p>}
       {tasks.map((task) => (
         <TaskItem key={task.id} task={task} />
       ))}
