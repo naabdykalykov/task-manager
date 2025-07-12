@@ -5,9 +5,9 @@ export type Category =
   | "Refactor"
   | "Test";
 
-export type Status = "To do" | "In progress" | "Done";
+export type Status = "To Do" | "In Progress" | "Done";
 
-export type Priority = "Low" | "Medium" | "Hight";
+export type Priority = "Low" | "Medium" | "High";
 
 export type Task = {
   id: string;
