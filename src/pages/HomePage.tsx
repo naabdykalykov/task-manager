@@ -1,12 +1,13 @@
 import { Typography } from "antd";
+import TaskList from "../components/TaskList";
 
 const { Title } = Typography;
 
 export const HomePage = () => {
   return (
     <div style={{ padding: "24px" }}>
-      <Title>TaskManager</Title>
-      <p>Spisok</p>
+      <Title>Task Manager Dashboard</Title>
+      <TaskList />
     </div>
   );
 };
