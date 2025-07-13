@@ -3,6 +3,9 @@ import { Card, Tag, Button } from "antd";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles.module.scss";
 
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+
 type Props = {
   task: Task;
 };
@@ -14,13 +17,11 @@ const categoryColors: Record<Task["category"], string> = {
   Refactor: "#fa8c16",
   Test: "#722ed1",
 };
-
 const statusColors: Record<Task["status"], string> = {
   "To Do": "#bfbfbf",
   "In Progress": "#1890ff",
   Done: "#52c41a",
 };
-
 const priorityColors: Record<Task["priority"], string> = {
   Low: "#73d13d",
   Medium: "#faad14",
@@ -30,26 +31,45 @@ const priorityColors: Record<Task["priority"], string> = {
 export const TaskItem = ({ task }: Props) => {
   const navigate = useNavigate();
 
-  const handleEdit = () => {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: task.id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : 1,
+    cursor: "grab",
+  };
+
+  const handleEdit = (e: React.MouseEvent) => {
+    e.stopPropagation();
     navigate(`/task/${task.id}`);
   };
 
   return (
-    <Card
-      className={styles.card}
-      title={task.title}
-      extra={
-        <Button size="small" onClick={handleEdit}>
-          Edit
-        </Button>
-      }
-    >
-      {task.description && <p>{task.description}</p>}
-      <div className={styles.tags}>
-        <Tag color={categoryColors[task.category]}>{task.category}</Tag>
-        <Tag color={statusColors[task.status]}>{task.status}</Tag>
-        <Tag color={priorityColors[task.priority]}>{task.priority}</Tag>
-      </div>
-    </Card>
+    <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
+      <Card
+        className={styles.card}
+        title={task.title}
+        extra={
+          <Button size="small" onClick={handleEdit}>
+            Edit
+          </Button>
+        }
+      >
+        {task.description && <p>{task.description}</p>}
+        <div className={styles.tags}>
+          <Tag color={categoryColors[task.category]}>{task.category}</Tag>
+          <Tag color={statusColors[task.status]}>{task.status}</Tag>
+          <Tag color={priorityColors[task.priority]}>{task.priority}</Tag>
+        </div>
+      </Card>
+    </div>
   );
 };
