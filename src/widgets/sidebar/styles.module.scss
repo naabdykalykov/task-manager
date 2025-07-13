@@ -4,6 +4,11 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
+
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  height: 100vh;
 }
 
 .siderContent {
