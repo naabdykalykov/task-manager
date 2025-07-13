@@ -26,7 +26,6 @@
     ```bash
     git clone https://github.com/naabdykalykov/task-manager.git
     ```
-    *(замените на свой URL)*
 
 2.  Перейти в директорию проекта:
     ```bash
