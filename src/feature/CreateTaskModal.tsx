@@ -32,16 +32,16 @@ export const CreateTaskModal = ({ open, onCreate, onCancel }: Props) => {
         onCreate(values);
       })
       .catch(() => {
-        message.error("Пожалуйста, заполните все обязательные поля.");
+        message.error("Please fill in all required fields.");
       });
   };
 
   return (
     <Modal
       open={open}
-      title="Создать новую задачу"
-      okText="Создать"
-      cancelText="Отмена"
+      title="Create a New Task"
+      okText="Create"
+      cancelText="Cancel"
       onCancel={onCancel}
       onOk={handleOk}
     >
@@ -56,44 +56,47 @@ export const CreateTaskModal = ({ open, onCreate, onCancel }: Props) => {
       >
         <Form.Item
           name="title"
-          label="Заголовок"
-          rules={[
-            { required: true, message: "Пожалуйста, введите заголовок!" },
-          ]}
+          label="Title"
+          rules={[{ required: true, message: "Please enter the task title!" }]}
         >
-          <Input />
+          <Input placeholder="Enter task title" />
         </Form.Item>
 
-        <Form.Item name="description" label="Описание">
-          <TextArea rows={4} />
+        <Form.Item name="description" label="Description">
+          <TextArea rows={4} placeholder="Enter task description (optional)" />
         </Form.Item>
 
         <Form.Item
           name="category"
-          label="Категория"
-          rules={[
-            { required: true, message: "Пожалуйста, выберите категорию!" },
-          ]}
+          label="Category"
+          rules={[{ required: true, message: "Please select a category!" }]}
         >
-          <Select options={categories.map((c) => ({ label: c, value: c }))} />
+          <Select
+            placeholder="Select a category"
+            options={categories.map((c) => ({ label: c, value: c }))}
+          />
         </Form.Item>
 
         <Form.Item
           name="status"
-          label="Статус"
-          rules={[{ required: true, message: "Пожалуйста, выберите статус!" }]}
+          label="Status"
+          rules={[{ required: true, message: "Please select a status!" }]}
         >
-          <Select options={statuses.map((s) => ({ label: s, value: s }))} />
+          <Select
+            placeholder="Select a status"
+            options={statuses.map((s) => ({ label: s, value: s }))}
+          />
         </Form.Item>
 
         <Form.Item
           name="priority"
-          label="Приоритет"
-          rules={[
-            { required: true, message: "Пожалуйста, выберите приоритет!" },
-          ]}
+          label="Priority"
+          rules={[{ required: true, message: "Please select a priority!" }]}
         >
-          <Select options={priorities.map((p) => ({ label: p, value: p }))} />
+          <Select
+            placeholder="Select a priority"
+            options={priorities.map((p) => ({ label: p, value: p }))}
+          />
         </Form.Item>
       </Form>
     </Modal>

@@ -6,6 +6,7 @@ import type { Category, Priority, Status, Task } from "../types/task";
 
 const { Title } = Typography;
 const { TextArea } = Input;
+
 const categories: Category[] = [
   "Bug",
   "Feature",
@@ -17,7 +18,7 @@ const statuses: Status[] = ["To Do", "In Progress", "Done"];
 const priorities: Priority[] = ["Low", "Medium", "High"];
 
 const TaskPage = () => {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { tasks, updateTask } = useTaskContext();
   const [form] = Form.useForm();
@@ -28,71 +29,79 @@ const TaskPage = () => {
     if (task) {
       form.setFieldsValue(task);
     } else {
-      message.error("Задача не найдена");
+      message.error("Task not found");
       navigate("/");
     }
   }, [task, form, navigate]);
 
   const onFinish = (values: Omit<Task, "id">) => {
-    const updatedTask = { ...values, id: id! };
+    if (id) {
+      const updatedTask = { ...values, id };
+      updateTask(updatedTask);
 
-    updateTask(updatedTask);
-    message.success("Задача сохранена");
-    navigate("/");
+      message.success("Task updated successfully");
+      navigate("/");
+    }
   };
 
   return (
     <div style={{ maxWidth: 600, margin: "24px auto", padding: "0 12px" }}>
-      <Title level={2}>Редактирование задачи</Title>
+      <Title level={2}>Edit Task</Title>
       <Form form={form} layout="vertical" onFinish={onFinish}>
         <Form.Item
-          label="Заголовок"
+          label="Title"
           name="title"
-          rules={[{ required: true, message: "Пожалуйста, введите заголовок" }]}
+          rules={[{ required: true, message: "Please enter the task title" }]}
         >
-          <Input />
+          <Input placeholder="Enter task title" />
         </Form.Item>
 
-        <Form.Item label="Описание" name="description">
-          <TextArea rows={4} />
+        <Form.Item label="Description" name="description">
+          <TextArea rows={4} placeholder="Enter task description (optional)" />
         </Form.Item>
 
         <Form.Item
-          label="Категория"
+          label="Category"
           name="category"
-          rules={[
-            { required: true, message: "Пожалуйста, выберите категорию" },
-          ]}
+          rules={[{ required: true, message: "Please select a category" }]}
         >
-          <Select options={categories.map((c) => ({ label: c, value: c }))} />
+          <Select
+            placeholder="Select a category"
+            options={categories.map((c) => ({ label: c, value: c }))}
+          />
         </Form.Item>
 
         <Form.Item
-          label="Статус"
+          label="Status"
           name="status"
-          rules={[{ required: true, message: "Пожалуйста, выберите статус" }]}
+          rules={[{ required: true, message: "Please select a status" }]}
         >
-          <Select options={statuses.map((s) => ({ label: s, value: s }))} />
+          <Select
+            placeholder="Select a status"
+            options={statuses.map((s) => ({ label: s, value: s }))}
+          />
         </Form.Item>
 
         <Form.Item
-          label="Приоритет"
+          label="Priority"
           name="priority"
-          rules={[
-            { required: true, message: "Пожалуйста, выберите приоритет" },
-          ]}
+          rules={[{ required: true, message: "Please select a priority" }]}
         >
-          <Select options={priorities.map((p) => ({ label: p, value: p }))} />
+          <Select
+            placeholder="Select a priority"
+            options={priorities.map((p) => ({ label: p, value: p }))}
+          />
         </Form.Item>
 
         <Form.Item style={{ display: "flex", justifyContent: "space-between" }}>
-          <Button onClick={() => navigate("/")}>Отмена</Button>
+          <Button onClick={() => navigate("/")}>Cancel</Button>
           <Button type="primary" htmlType="submit">
-            Сохранить
+            Save Changes
           </Button>
         </Form.Item>
       </Form>
     </div>
   );
 };
+
 export default TaskPage;

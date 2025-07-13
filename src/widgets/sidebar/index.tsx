@@ -24,21 +24,21 @@ const categoryOptions: Category[] = [
 const priorityOptions: Priority[] = ["Low", "Medium", "High"];
 
 const statusLabels: Record<Status, string> = {
-  "To Do": "К выполнению",
-  "In Progress": "В работе",
-  Done: "Готово",
+  "To Do": "To Do",
+  "In Progress": "In Progress",
+  Done: "Done",
 };
 const categoryLabels: Record<Category, string> = {
-  Bug: "Баг",
-  Feature: "Фича",
-  Documentation: "Документация",
-  Refactor: "Рефакторинг",
-  Test: "Тест",
+  Bug: "Bug",
+  Feature: "Feature",
+  Documentation: "Documentation",
+  Refactor: "Refactor",
+  Test: "Test",
 };
 const priorityLabels: Record<Priority, string> = {
-  Low: "Низкий",
-  Medium: "Средний",
-  High: "Высокий",
+  Low: "Low",
+  Medium: "Medium",
+  High: "High",
 };
 
 const Sidebar = () => {
@@ -91,19 +91,19 @@ const Sidebar = () => {
               {
                 key: "dashboard",
                 icon: <PieChartOutlined />,
-                label: "Дашборд",
+                label: "Dashboard",
               },
               {
                 key: "allTasks",
                 icon: <UnorderedListOutlined />,
-                label: "Все задачи",
+                label: "All tasks",
               },
-              { key: "myTasks", icon: <UserOutlined />, label: "Мои задачи" },
+              { key: "myTasks", icon: <UserOutlined />, label: "My tasks" },
             ]}
           />
           <div className={styles.filtersContainer}>
             <div className={styles.filterGroup}>
-              <h4>Статус</h4>
+              <h4>Status</h4>
               <Checkbox.Group
                 options={statusCheckboxOptions}
                 value={statusFilters}
@@ -113,7 +113,7 @@ const Sidebar = () => {
               />
             </div>
             <div className={styles.filterGroup}>
-              <h4>Категория</h4>
+              <h4>Categories</h4>
               <Checkbox.Group
                 options={categoryCheckboxOptions}
                 value={categoryFilters}
@@ -124,7 +124,7 @@ const Sidebar = () => {
               />
             </div>
             <div className={styles.filterGroup}>
-              <h4>Приоритет</h4>
+              <h4>Priority</h4>
               <Checkbox.Group
                 options={priorityCheckboxOptions}
                 value={priorityFilters}
@@ -142,7 +142,7 @@ const Sidebar = () => {
           block
           onClick={showModal}
         >
-          Создать задачу
+          Create new task
         </Button>
       </Sider>
       <CreateTaskModal

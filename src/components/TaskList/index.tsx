@@ -4,9 +4,9 @@ import { TaskColumn } from "../TaskColumn";
 import styles from "./styles.module.scss";
 
 const statusTitles: Record<Status, string> = {
-  "To Do": "Открытые",
-  "In Progress": "В работе",
-  Done: "Готово",
+  "To Do": "Open",
+  "In Progress": "In progress",
+  Done: "Done",
 };
 
 const TaskList = () => {
