@@ -4,3 +4,27 @@
   padding: 16px;
   overflow-x: auto;
 }
+
+.noResults {
+  text-align: center;
+  margin: 60px auto;
+  padding: 24px;
+  background-color: #2a2a2f;
+  border-radius: 10px;
+  color: #a0a0a5;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  p {
+    margin: 0;
+    font-size: 1.1em;
+    font-weight: 500;
+    color: #e0e0e5;
+  }
+
+  span {
+    font-size: 0.9em;
+  }
+}

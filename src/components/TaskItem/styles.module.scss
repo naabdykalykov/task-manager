@@ -1,11 +1,40 @@
 .card {
-  margin-bottom: 16px;
+  background-color: #1f1f23;
+  border: 1px solid #2a2a2e;
+  border-radius: 10px;
+  color: #f0f0f0;
+
   cursor: pointer;
   transition: box-shadow 0.3s ease, transform 0.2s ease;
 
   &:hover {
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
     transform: translateY(-2px);
+  }
+
+  :global(.ant-card-head) {
+    background-color: #1f1f23;
+    border-bottom: 1px solid #2a2a2e;
+    color: #fff;
+    font-weight: 600;
+  }
+
+  :global(.ant-card-body) {
+    color: #d1d1d6;
+    padding-top: 8px;
+  }
+
+  :global(.ant-btn) {
+    background-color: #3a3a3f;
+    border-color: #4a4a4f;
+    color: #e0e0e5;
+
+    &:hover,
+    &:focus {
+      background-color: #4a4a4f;
+      border-color: #5a5a5f;
+      color: #fff;
+    }
   }
 }
 

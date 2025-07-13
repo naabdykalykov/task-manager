@@ -36,29 +36,13 @@ export const TaskItem = ({ task }: Props) => {
 
   return (
     <Card
-      className={styles.card} // подключаем твой стиль
+      className={styles.card}
       title={task.title}
       extra={
         <Button size="small" onClick={handleEdit}>
           Edit
         </Button>
       }
-      style={{
-        backgroundColor: "#1f1f23",
-        border: "1px solid #2a2a2e",
-        borderRadius: "10px",
-        color: "#f0f0f0",
-      }}
-      headStyle={{
-        backgroundColor: "#1f1f23",
-        borderBottom: "1px solid #2a2a2e",
-        color: "#fff",
-        fontWeight: 600,
-      }}
-      bodyStyle={{
-        color: "#d1d1d6",
-        paddingTop: "8px",
-      }}
     >
       {task.description && <p>{task.description}</p>}
       <div className={styles.tags}>

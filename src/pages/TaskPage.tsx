@@ -33,8 +33,10 @@ const TaskPage = () => {
     }
   }, [task, form, navigate]);
 
-  const onFinish = (values: Task) => {
-    updateTask(values);
+  const onFinish = (values: Omit<Task, "id">) => {
+    const updatedTask = { ...values, id: id! };
+
+    updateTask(updatedTask);
     message.success("Задача сохранена");
     navigate("/");
   };
